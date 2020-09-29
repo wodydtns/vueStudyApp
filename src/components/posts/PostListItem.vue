@@ -8,6 +8,8 @@
     </div>
     <div class="post-time">
       {{ postItem.createdAt }}
+      <!-- <i class="icon ion-md-create"></i> -->
+      <!-- <i class="icon ion-md-trash"></i> -->
     </div>
   </li>
 </template>

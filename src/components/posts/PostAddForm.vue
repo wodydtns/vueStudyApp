@@ -16,21 +16,33 @@
             rows="5"
             v-model="contents"
           />
+          <p v-if="!isContentsValid" class="validation-text warning">
+            200자 미만으로 작성해야합니다.
+          </p>
         </div>
         <button type="submit" class="btn">create</button>
       </form>
+      <p class="log">
+        {{ logMessage }}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-import { createPost } from '@/api/index';
+import { createPost } from '@/api/posts';
 export default {
   data() {
     return {
       title: '',
       contents: '',
+      logMessage: '',
     };
+  },
+  computed: {
+    isContentsValid() {
+      return this.contents.length < 200;
+    },
   },
   methods: {
     async submitForm() {
@@ -41,7 +53,8 @@ export default {
         });
         console.log(response);
       } catch (error) {
-        console.log(error);
+        console.log(error.response.data.message);
+        this.logMessage = error.response.data.message;
       }
     },
   },
