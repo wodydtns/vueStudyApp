@@ -10,5 +10,18 @@ function fetchPosts() {
 function createPost(postData) {
   return posts.post('/', postData);
 }
+//학습노트 데이터 삭제 API
+function deletePost(postId) {
+  return posts.delete(postId);
+}
 
-export { createPost, fetchPosts };
+//특정 학습 노트를 조회하는 api
+function fetchPost(postId) {
+  return posts.get(postId);
+}
+// 학습 노트 데이터를 수정하는 api
+function editPost(postId, postData) {
+  return posts.put(postId, postData);
+}
+
+export { createPost, fetchPosts, deletePost, fetchPost, editPost };
